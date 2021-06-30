@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905693060375",
+    "project_id": "mingler-app-18afd",
+    "storage_bucket": "mingler-app-18afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905693060375:android:6d6609be603dfe0cfc2b52",
+        "android_client_info": {
+          "package_name": "com.example.minglerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905693060375-e8cb8ooa1unron5ml6ngmdmpvl6itgfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQV8OUPJEca6iH2QNXUJdNfukqtMjG6d0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905693060375-e8cb8ooa1unron5ml6ngmdmpvl6itgfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
