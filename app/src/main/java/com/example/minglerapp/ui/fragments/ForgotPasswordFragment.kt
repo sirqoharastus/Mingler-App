@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentForgotPasswordBinding
+import com.example.minglerapp.ui.activities.DashboardActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,7 +32,9 @@ class ForgotPasswordFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
         binding.forgotPasswordResetPasswordButton.setOnClickListener {
-            resetPassword()
+//            resetPassword()
+            val intent = Intent(requireContext(), DashboardActivity::class.java)
+            startActivity(intent)
         }
     }
 

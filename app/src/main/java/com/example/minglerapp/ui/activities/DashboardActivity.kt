@@ -21,6 +21,7 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_MinglerApp)
         setContentView(R.layout.activity_dashboard)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
