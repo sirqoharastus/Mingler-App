@@ -1,5 +1,6 @@
 package com.example.minglerapp.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentForgotPasswordBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -37,6 +39,14 @@ class ForgotPasswordFragment : Fragment() {
         if (binding.forgotPasswordEmailEdittext.text.toString().isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(binding.forgotPasswordEmailEdittext.text.toString()).matches()){
             val email = binding.forgotPasswordEmailEdittext.text.toString()
             mAuth?.sendPasswordResetEmail(binding.forgotPasswordEmailEdittext.text.toString().trim())
+                ?.addOnCompleteListener {
+                    if (it.isSuccessful){
+                        Snackbar.make(requireView(), "Check your email to reset password", Snackbar.LENGTH_LONG).show()
+                    }
+                    else{
+                        Snackbar.make(requireView(), "Something went wrong, try again", Snackbar.LENGTH_LONG).show()
+                    }
+                }
         }
 
     }
