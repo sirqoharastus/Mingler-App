@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentRegistrationBinding
 import com.example.minglerapp.models.UserRegistration
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
 class RegistrationFragment : Fragment() {
     var _binding: FragmentRegistrationBinding? = null
     val binding get() = _binding!!
     private var mAuth: FirebaseAuth? = null
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -29,7 +28,7 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
 
         binding.signUpButton.setOnClickListener {
             registerUser()
@@ -100,7 +99,6 @@ class RegistrationFragment : Fragment() {
                                 "User registered successfully",
                                 Snackbar.LENGTH_LONG
                             ).show()
-
                         } else {
                             Snackbar.make(
                                 requireContext(),
@@ -117,9 +115,7 @@ class RegistrationFragment : Fragment() {
                         "Failed to register user",
                         Snackbar.LENGTH_LONG
                     ).show()
-
                 }
             }
     }
-
 }
