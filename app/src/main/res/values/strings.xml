@@ -26,5 +26,4 @@
     <string name="phone_number_text">Phone Number</string>
     <string name="password_text">Password</string>
     <string name="confirm_password_text">Confirm password</string>
-    <string name="sign_up_text">Sign Up</string>
 </resources>
