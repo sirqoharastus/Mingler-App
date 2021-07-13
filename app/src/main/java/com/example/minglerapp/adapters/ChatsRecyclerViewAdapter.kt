@@ -11,13 +11,13 @@ class ChatsRecyclerViewAdapter(private val chatsList: ArrayList<Chats>) :
 
     class ChatsRecyclerViewHolder(private val binding: ChatsItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(chats: Chats){
-                binding.apply {
-                    userNameTextview.text = chats.name
-                    lastMessageTimeTextView.text = chats.time
-                    lastMessageTimeTextView.text = chats.lastTextBody
-                }
+        fun bind(chats: Chats) {
+            binding.apply {
+                userNameTextview.text = chats.name
+                lastMessageTimeTextView.text = chats.time
+                lastMessageTimeTextView.text = chats.lastTextBody
             }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsRecyclerViewHolder {
