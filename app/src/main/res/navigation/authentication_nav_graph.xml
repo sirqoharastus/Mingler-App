@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/forgotPasswordFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -35,7 +35,8 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.minglerapp.ui.fragments.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
+        tools:layout="@layout/fragment_forgot_password"
+        app:startDestination="@id/action_forgotPasswordFragment_to_loginFragment">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

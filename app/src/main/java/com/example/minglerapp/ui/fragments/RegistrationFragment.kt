@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class RegistrationFragment : Fragment() {
-    var _binding : FragmentRegistrationBinding? = null
+    var _binding: FragmentRegistrationBinding? = null
     val binding get() = _binding!!
     private var mAuth: FirebaseAuth? = null
     override fun onCreateView(
@@ -37,72 +37,86 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun registerUser() {
-        val firstName = binding.firstNameEdittext.text.toString()
-        val lastName = binding.lastNameEdittext.text.toString()
+        val firstName = binding.firstNameEditText.text.toString()
+        val lastName = binding.lastNameEditText.text.toString()
         val email = binding.emailEdittext.text.toString()
-        val phoneNumber = binding.phoneNumberEdittext.text.toString()
-        val password = binding.passwordEdittext.text.toString()
+        val phoneNumber = binding.phoneNumberEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
 
-        if (binding.firstNameEdittext.text.toString().isEmpty()){
-            binding.firstNameEdittext.error = "Field cannot be empty"
-            binding.firstNameEdittext.requestFocus()
+        if (binding.firstNameEditText.text.toString().isEmpty()) {
+            binding.firstNameEditText.error = "Field cannot be empty"
+            binding.firstNameEditText.requestFocus()
             return
         }
-        if (binding.lastNameEdittext.text.toString().isEmpty()){
-            binding.lastNameEdittext.error = "Field cannot be empty"
-            binding.lastNameEdittext.requestFocus()
+        if (binding.lastNameEditText.text.toString().isEmpty()) {
+            binding.lastNameEditText.error = "Field cannot be empty"
+            binding.lastNameEditText.requestFocus()
             return
         }
-        if (binding.emailEdittext.text.toString().isEmpty()){
+        if (binding.emailEdittext.text.toString().isEmpty()) {
             binding.emailEdittext.error = "Field cannot be empty"
             binding.emailEdittext.requestFocus()
             return
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(binding.emailEdittext.text.toString()).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.emailEdittext.text.toString()).matches()) {
             binding.emailEdittext.error = "Not a valid email"
             binding.emailEdittext.requestFocus()
             return
         }
 
-        if (binding.phoneNumberEdittext.text.toString().isEmpty()){
-            binding.phoneNumberEdittext.error = "Field cannot be empty"
-            binding.phoneNumberEdittext.requestFocus()
+        if (binding.phoneNumberEditText.text.toString().isEmpty()) {
+            binding.phoneNumberEditText.error = "Field cannot be empty"
+            binding.phoneNumberEditText.requestFocus()
             return
         }
 
-        if (binding.phoneNumberEdittext.text.toString().length < 10){
-            binding.phoneNumberEdittext.error = "Not a valid phone number"
-            binding.phoneNumberEdittext.requestFocus()
+        if (binding.phoneNumberEditText.text.toString().length < 10) {
+            binding.phoneNumberEditText.error = "Not a valid phone number"
+            binding.phoneNumberEditText.requestFocus()
             return
         }
-        if (binding.passwordEdittext.text.toString().length < 7){
-            binding.passwordEdittext.error = "Password length must be 6 or greater"
-            binding.passwordEdittext.requestFocus()
+        if (binding.passwordEditText.text.toString().length < 7) {
+            binding.passwordEditText.error = "Password length must be 6 or greater"
+            binding.passwordEditText.requestFocus()
         }
-        if (binding.passwordEdittext.text.toString() != binding.confirmPasswordEdittext.text.toString()){
-            binding.confirmPasswordEdittext.error = "Passwords must be the same"
-            binding.confirmPasswordEdittext.requestFocus()
+        if (binding.passwordEditText.text.toString() != binding.confirmPasswordEditText.text.toString()) {
+            binding.confirmPasswordEditText.error = "Passwords must be the same"
+            binding.confirmPasswordEditText.requestFocus()
         }
 
         mAuth?.createUserWithEmailAndPassword(email, password)
             ?.addOnCompleteListener { it ->
-                if (it.isSuccessful){
-                    val user = UserRegistration(firstName, lastName, email, phoneNumber, password)
+                if (it.isSuccessful) {
+                    val user = UserRegistration(firstName, lastName, email, phoneNumber)
                     FirebaseAuth.getInstance().currentUser?.let { it1 ->
                         FirebaseDatabase.getInstance().getReference("Users").child(
-                            it1.uid)
+                            it1.uid
+                        )
                     }?.setValue(user)?.addOnCompleteListener {
-                        if (it.isSuccessful){
-                            Snackbar.make(requireContext(), requireView(), "User registered successfully", Snackbar.LENGTH_LONG).show()
+                        if (it.isSuccessful) {
+                            Snackbar.make(
+                                requireContext(),
+                                requireView(),
+                                "User registered successfully",
+                                Snackbar.LENGTH_LONG
+                            ).show()
 
-                        }
-                        else{
-                            Snackbar.make(requireContext(),requireView(), "Failed to register user", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            Snackbar.make(
+                                requireContext(),
+                                requireView(),
+                                "Failed to register user",
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
                     }
-                }
-                else{
-                    Snackbar.make(requireContext(),requireView(), "Failed to register user", Snackbar.LENGTH_LONG).show()
+                } else {
+                    Snackbar.make(
+                        requireContext(),
+                        requireView(),
+                        "Failed to register user",
+                        Snackbar.LENGTH_LONG
+                    ).show()
 
                 }
             }

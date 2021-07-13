@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="@+id/email_text_input_layout">
 
         <EditText
-            android:id="@+id/password_edittext"
+            android:id="@+id/password_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
