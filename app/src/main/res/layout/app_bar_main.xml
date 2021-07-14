@@ -60,9 +60,8 @@
     <fragment
         android:id="@+id/dashboard_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="411dp"
-        android:layout_height="672dp"
-        app:constraintToptoBottomof="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

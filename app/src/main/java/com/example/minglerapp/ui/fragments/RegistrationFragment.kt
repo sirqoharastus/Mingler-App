@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentRegistrationBinding
 import com.example.minglerapp.models.UserRegistration
 import com.google.android.material.snackbar.Snackbar
@@ -99,6 +101,7 @@ class RegistrationFragment : Fragment() {
                                 "User registered successfully",
                                 Snackbar.LENGTH_LONG
                             ).show()
+                            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
                         } else {
                             Snackbar.make(
                                 requireContext(),

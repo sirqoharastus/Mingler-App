@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentForgotPasswordBinding
 import com.example.minglerapp.ui.activities.DashboardActivity
 import com.google.android.material.snackbar.Snackbar
@@ -31,21 +33,34 @@ class ForgotPasswordFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
         binding.forgotPasswordResetPasswordButton.setOnClickListener {
-//            resetPassword()
-            val intent = Intent(requireContext(), DashboardActivity::class.java)
-            startActivity(intent)
+            resetPassword()
         }
     }
 
     private fun resetPassword() {
-        if (binding.forgotPasswordEmailEdittext.text.toString().isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(binding.forgotPasswordEmailEdittext.text.toString()).matches()) {
-            val email = binding.forgotPasswordEmailEdittext.text.toString()
-            mAuth?.sendPasswordResetEmail(binding.forgotPasswordEmailEdittext.text.toString().trim())
+        if (binding.forgotPasswordEmailEditText.text.toString()
+                .isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(binding.forgotPasswordEmailEditText.text.toString())
+                .matches()
+        ) {
+            val email = binding.forgotPasswordEmailEditText.text.toString()
+            mAuth?.sendPasswordResetEmail(
+                binding.forgotPasswordEmailEditText.text.toString().trim()
+            )
                 ?.addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Snackbar.make(requireView(), "Check your email to reset password", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            requireView(),
+                            "Check your email to reset password",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+
+                        findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
                     } else {
-                        Snackbar.make(requireView(), "Something went wrong, try again", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            requireView(),
+                            "Something went wrong, try again",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
         }
