@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/chatsFragment"
-        android:name="com.example.minglerapp.ui.fragments.ChatsFragment"
+        android:name="com.example.minglerapp.ui.fragments.chats.ChatsFragment"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.example.minglerapp.ui.fragments.ContactsFragment"
+        android:name="com.example.minglerapp.ui.fragments.contacts.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" />
 </navigation>

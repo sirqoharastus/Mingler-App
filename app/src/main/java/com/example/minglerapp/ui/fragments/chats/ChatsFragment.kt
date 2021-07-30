@@ -1,4 +1,4 @@
-package com.example.minglerapp.ui.fragments
+package com.example.minglerapp.ui.fragments.chats
 
 import android.os.Bundle
 import android.view.LayoutInflater

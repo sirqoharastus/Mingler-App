@@ -1,4 +1,4 @@
-package com.example.minglerapp.ui.fragments
+package com.example.minglerapp.ui.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.minglerapp.R
@@ -20,6 +22,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
+    private val viewModel by viewModels<LoginFragmentViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +52,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(email: String, password: String) {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+        viewModel.login(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Snackbar.make(
                     requireContext(),
@@ -72,7 +75,7 @@ class LoginFragment : Fragment() {
                     Snackbar.LENGTH_LONG
                 ).show()
             }
-        }
+       }
     }
 
     override fun onDestroyView() {

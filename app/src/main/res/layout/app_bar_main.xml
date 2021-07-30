@@ -24,11 +24,13 @@
             app:popupTheme="@style/SplashScreenTheme.PopupOverlay">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image_imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_launcher_background" />
 
             <TextView
+                android:id="@+id/username_toolbar_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_30dp"

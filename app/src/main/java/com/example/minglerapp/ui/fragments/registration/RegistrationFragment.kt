@@ -1,4 +1,4 @@
-package com.example.minglerapp.ui.fragments
+package com.example.minglerapp.ui.fragments.registration
 
 import android.os.Bundle
 import android.util.Patterns
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.minglerapp.R
 import com.example.minglerapp.databinding.FragmentRegistrationBinding
@@ -18,6 +19,7 @@ class RegistrationFragment : Fragment() {
     var _binding: FragmentRegistrationBinding? = null
     val binding get() = _binding!!
     private var mAuth: FirebaseAuth? = null
+    private val viewModel by viewModels<RegistrationViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -85,40 +87,39 @@ class RegistrationFragment : Fragment() {
             binding.confirmPasswordEditText.requestFocus()
         }
 
-        mAuth?.createUserWithEmailAndPassword(email, password)
-            ?.addOnCompleteListener { it ->
-                if (it.isSuccessful) {
-                    val user = UserRegistration(firstName, lastName, email, phoneNumber)
-                    FirebaseAuth.getInstance().currentUser?.let { it1 ->
-                        FirebaseDatabase.getInstance().getReference("Users").child(
-                            it1.uid
-                        )
-                    }?.setValue(user)?.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Snackbar.make(
-                                requireContext(),
-                                requireView(),
-                                "User registered successfully",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
-                        } else {
-                            Snackbar.make(
-                                requireContext(),
-                                requireView(),
-                                "Failed to register user",
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
+        viewModel.registerUser(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val user = UserRegistration(firstName, lastName, email, phoneNumber)
+                FirebaseAuth.getInstance().currentUser?.let { it1 ->
+                    FirebaseDatabase.getInstance().getReference("Users").child(
+                        it1.uid
+                    )
+                }?.setValue(user)?.addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Snackbar.make(
+                            requireContext(),
+                            requireView(),
+                            "User registered successfully",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+                    } else {
+                        Snackbar.make(
+                            requireContext(),
+                            requireView(),
+                            "Failed to register user",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
-                } else {
-                    Snackbar.make(
-                        requireContext(),
-                        requireView(),
-                        "Failed to register user",
-                        Snackbar.LENGTH_LONG
-                    ).show()
                 }
+            } else {
+                Snackbar.make(
+                    requireContext(),
+                    requireView(),
+                    "Failed to register user",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
+        }
     }
 }
