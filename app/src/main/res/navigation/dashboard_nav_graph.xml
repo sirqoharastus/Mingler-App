@@ -9,7 +9,11 @@
         android:id="@+id/chatsFragment"
         android:name="com.example.minglerapp.ui.fragments.chats.ChatsFragment"
         android:label="fragment_chats"
-        tools:layout="@layout/fragment_chats" />
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_chatsFragment_to_chatScreenFragment"
+            app:destination="@id/chatScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.example.minglerapp.ui.fragments.contacts.ContactsFragment"
@@ -19,5 +23,9 @@
         android:id="@+id/chatScreenFragment"
         android:name="com.example.minglerapp.ui.fragments.chatScreen.ChatScreenFragment"
         android:label="fragment_chat_screen"
-        tools:layout="@layout/fragment_chat_screen" />
+        tools:layout="@layout/fragment_chat_screen" >
+        <argument
+            android:name="ReceiverData"
+            app:argType="com.example.minglerapp.models.UserRegistration" />
+    </fragment>
 </navigation>

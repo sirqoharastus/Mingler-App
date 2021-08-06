@@ -34,7 +34,8 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>
         }
         holder.itemView.setOnClickListener {
             controller = Navigation.findNavController(holder.itemView)
-            controller!!.navigate(R.id.chatScreenFragment)
+            val action = ChatsFragmentDirections.actionChatsFragmentToChatScreenFragment(contactsList[position])
+            controller!!.navigate(action)
         }
     }
 

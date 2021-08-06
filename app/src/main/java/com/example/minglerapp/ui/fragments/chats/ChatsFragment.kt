@@ -46,7 +46,7 @@ class ChatsFragment : Fragment() {
     }
 
     private fun getAllUsers() {
-        chatsViewModel.listOfusers.observe(
+        chatsViewModel.listOfUsers.observe(
             viewLifecycleOwner,
             {
                 contactsAdapter?.getAdapterContactList(it)

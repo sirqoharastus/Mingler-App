@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.minglerapp.models.UserRegistration
+import com.example.minglerapp.utils.USERS_REFERENCE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,14 +14,14 @@ import com.google.firebase.database.ValueEventListener
 
 class ChatsViewModel : ViewModel() {
     private var _listOfUsers = MutableLiveData<ArrayList<UserRegistration>>()
-    val listOfusers: LiveData<ArrayList<UserRegistration>> get() = _listOfUsers
+    val listOfUsers: LiveData<ArrayList<UserRegistration>> get() = _listOfUsers
 
     var firebaseDatabase = FirebaseDatabase.getInstance()
     var firebaseUser = FirebaseAuth.getInstance().currentUser
 
     fun getAllUsers() {
         var userList = ArrayList<UserRegistration>()
-        val usersRef = firebaseDatabase.getReference("Users")
+        val usersRef = firebaseDatabase.getReference(USERS_REFERENCE)
         usersRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
