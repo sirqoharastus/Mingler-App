@@ -89,7 +89,8 @@ class RegistrationFragment : Fragment() {
 
         viewModel.registerUser(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                val user = UserRegistration(firstName, lastName, email, phoneNumber)
+                val id = mAuth?.currentUser?.uid.toString()
+                val user = UserRegistration(id, firstName, lastName, email, phoneNumber)
                 FirebaseAuth.getInstance().currentUser?.let { it1 ->
                     FirebaseDatabase.getInstance().getReference("Users").child(
                         it1.uid

@@ -7,13 +7,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
-class LoginFragmentViewModel: ViewModel() {
+class LoginFragmentViewModel : ViewModel() {
 
     private lateinit var firbaseUser: FirebaseUser
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var firebaseAuth: FirebaseAuth
 
-    fun login(email: String, password:String):Task<AuthResult> {
+    fun login(email: String, password: String): Task<AuthResult> {
         firebaseAuth = FirebaseAuth.getInstance()
         return firebaseAuth.signInWithEmailAndPassword(email, password)
     }

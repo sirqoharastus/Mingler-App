@@ -15,4 +15,9 @@
         android:name="com.example.minglerapp.ui.fragments.contacts.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" />
+    <fragment
+        android:id="@+id/chatScreenFragment"
+        android:name="com.example.minglerapp.ui.fragments.chatScreen.ChatScreenFragment"
+        android:label="fragment_chat_screen"
+        tools:layout="@layout/fragment_chat_screen" />
 </navigation>

@@ -39,7 +39,7 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun resetPassword() {
         if (binding.forgotPasswordEmailEditText.text.toString()
-                .isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(binding.forgotPasswordEmailEditText.text.toString())
+            .isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(binding.forgotPasswordEmailEditText.text.toString())
                 .matches()
         ) {
             val email = binding.forgotPasswordEmailEditText.text.toString()
